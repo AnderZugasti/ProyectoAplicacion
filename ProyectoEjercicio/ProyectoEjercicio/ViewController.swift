@@ -7,15 +7,54 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ViewController: BaseViewController {
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var mapa: MKMapView!
+    let locatinManager = CLLocationManager()
+    
+    @IBOutlet weak var empezarButt: UIButton!
+
     override func viewDidLoad() {
+       
         super.viewDidLoad()
-        self.addSlideMenuButton()
-
-        // Do any additional setup after loading the view.
+        checkLocationServices()
+        
+        
+        
     }
-
-
+    func setupLocationManager(){
+        locatinManager.delegate = self
+        locatinManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+    }
+    
+    @IBAction func empezarbutt(_ sender: Any) {
+        mapa.showsUserLocation = true 
+    }
+    
+    
+    func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled(){
+            setupLocationManager()
+            
+        }else{
+            
+        }
+    }
+    }
+extension ViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager,didUpdateLocation location: [CLLocation]){
+        
+    }
+    func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus){
+        
+    }
 }
+
+
+
+
 

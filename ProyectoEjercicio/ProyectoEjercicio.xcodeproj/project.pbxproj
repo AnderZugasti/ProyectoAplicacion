@@ -14,8 +14,7 @@
 		B34227BE23D30072002D71DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227BC23D30072002D71DA /* Main.storyboard */; };
 		B34227C023D30074002D71DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34227BF23D30074002D71DA /* Assets.xcassets */; };
 		B34227C323D30074002D71DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227C123D30074002D71DA /* LaunchScreen.storyboard */; };
-		B34227CE23D46FE0002D71DA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227CC23D46FE0002D71DA /* BaseViewController.swift */; };
-		B34227CF23D46FE0002D71DA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227CD23D46FE0002D71DA /* MenuViewController.swift */; };
+		B38CE59823DCC4E3001C3670 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38CE59723DCC4E3001C3670 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +29,7 @@
 		B34227BF23D30074002D71DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34227C223D30074002D71DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34227C423D30074002D71DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B34227CC23D46FE0002D71DA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../../Downloads/AKSwiftSlideMenu-master/AKSwiftSlideMenu/BaseViewController.swift"; sourceTree = "<group>"; };
-		B34227CD23D46FE0002D71DA /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = "../../../../Downloads/AKSwiftSlideMenu-master/AKSwiftSlideMenu/MenuViewController.swift"; sourceTree = "<group>"; };
+		B38CE59723DCC4E3001C3670 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B38CE59823DCC4E3001C3670 /* MapKit.framework in Frameworks */,
 				3C1FDBD3B24B3EC656C2CF97 /* Pods_ProyectoEjercicio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +48,7 @@
 		53360E29CF53F235F025AC4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B38CE59723DCC4E3001C3670 /* MapKit.framework */,
 				6ED45381B95149EC656DE0A2 /* Pods_ProyectoEjercicio.framework */,
 			);
 			name = Frameworks;
@@ -87,8 +87,6 @@
 				B34227B623D30072002D71DA /* AppDelegate.swift */,
 				B34227B823D30072002D71DA /* SceneDelegate.swift */,
 				B34227BA23D30072002D71DA /* ViewController.swift */,
-				B34227CC23D46FE0002D71DA /* BaseViewController.swift */,
-				B34227CD23D46FE0002D71DA /* MenuViewController.swift */,
 				B34227BC23D30072002D71DA /* Main.storyboard */,
 				B34227BF23D30074002D71DA /* Assets.xcassets */,
 				B34227C123D30074002D71DA /* LaunchScreen.storyboard */,
@@ -213,8 +211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B34227BB23D30072002D71DA /* ViewController.swift in Sources */,
-				B34227CF23D46FE0002D71DA /* MenuViewController.swift in Sources */,
-				B34227CE23D46FE0002D71DA /* BaseViewController.swift in Sources */,
 				B34227B723D30072002D71DA /* AppDelegate.swift in Sources */,
 				B34227B923D30072002D71DA /* SceneDelegate.swift in Sources */,
 			);
