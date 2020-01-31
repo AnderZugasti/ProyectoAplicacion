@@ -12,47 +12,40 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var mapa: MKMapView!
-    let locatinManager = CLLocationManager()
     
-    @IBOutlet weak var empezarButt: UIButton!
+    
+    
+   
 
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        checkLocationServices()
         
+
+                   
         
-        
-    }
-    func setupLocationManager(){
-        locatinManager.delegate = self
-        locatinManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-    }
+//        switch status {
+//
+//
+//        case .notDetermined:
+//            locationManager.requestWhenInUseAuthorization()
+//        case .restricted:
+//             locationManager.requestWhenInUseAuthorization()
+//        case .denied:
+//       break
+//        case .authorizedAlways:
+//            mapa.showsUserLocation = true
+//       case .authorizedWhenInUse:
+//            mapa.showsUserLocation = true
+//        default:
+//            break
+//        }
     
-    @IBAction func empezarbutt(_ sender: Any) {
-        mapa.showsUserLocation = true 
-    }
     
-    
-    func checkLocationServices(){
-        if CLLocationManager.locationServicesEnabled(){
-            setupLocationManager()
-            
-        }else{
-            
-        }
-    }
-    }
-extension ViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager,didUpdateLocation location: [CLLocation]){
-        
-    }
-    func locationManager(_ manager: CLLocationManager,didChangeAuthorization status: CLAuthorizationStatus){
-        
     }
 }
+
+
 
 
 

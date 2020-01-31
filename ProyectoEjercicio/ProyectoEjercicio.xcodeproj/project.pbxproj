@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C1FDBD3B24B3EC656C2CF97 /* Pods_ProyectoEjercicio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED45381B95149EC656DE0A2 /* Pods_ProyectoEjercicio.framework */; };
+		42D8334623E4A146006C42CD /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8334523E4A146006C42CD /* MapaViewController.swift */; };
 		B34227B723D30072002D71DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227B623D30072002D71DA /* AppDelegate.swift */; };
 		B34227B923D30072002D71DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227B823D30072002D71DA /* SceneDelegate.swift */; };
 		B34227BB23D30072002D71DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227BA23D30072002D71DA /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		22ECC3DF16CB68468E8641DA /* Pods-ProyectoEjercicio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProyectoEjercicio.release.xcconfig"; path = "Target Support Files/Pods-ProyectoEjercicio/Pods-ProyectoEjercicio.release.xcconfig"; sourceTree = "<group>"; };
+		42D8334523E4A146006C42CD /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		6ED45381B95149EC656DE0A2 /* Pods_ProyectoEjercicio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProyectoEjercicio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7E35C6D09C87EA0D28614D /* Pods-ProyectoEjercicio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProyectoEjercicio.debug.xcconfig"; path = "Target Support Files/Pods-ProyectoEjercicio/Pods-ProyectoEjercicio.debug.xcconfig"; sourceTree = "<group>"; };
 		B34227B323D30072002D71DA /* ProyectoEjercicio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProyectoEjercicio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 				B34227BF23D30074002D71DA /* Assets.xcassets */,
 				B34227C123D30074002D71DA /* LaunchScreen.storyboard */,
 				B34227C423D30074002D71DA /* Info.plist */,
+				42D8334523E4A146006C42CD /* MapaViewController.swift */,
 			);
 			path = ProyectoEjercicio;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B34227BB23D30072002D71DA /* ViewController.swift in Sources */,
+				42D8334623E4A146006C42CD /* MapaViewController.swift in Sources */,
 				B34227B723D30072002D71DA /* AppDelegate.swift in Sources */,
 				B34227B923D30072002D71DA /* SceneDelegate.swift in Sources */,
 			);
