@@ -13,11 +13,14 @@ import MapKit
 class MapaViewController: UIViewController {
     
     @IBOutlet weak var FinalizarBoton: UIButton!
+    @IBOutlet weak var kmContadorlbl: UILabel!
+    @IBOutlet weak var kmlbl: UILabel!
     @IBOutlet weak var mapa: MKMapView!
     @IBOutlet weak var InicioBoton: UIButton!
-    
+    var KMTotales: Double=0
+    var ruta: MKPolyline?
     var ArrayPuntos = [CLLocationCoordinate2D]()
-    
+    var enFuncionamiento = false
     let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -25,12 +28,14 @@ class MapaViewController: UIViewController {
 
         localizar()
         FinalizarBoton.isHidden = true
+        kmlbl.isHidden = true
+        kmContadorlbl.isHidden = true
         
         
         locationManager.delegate = self
+        mapa.delegate = self
         locationManager.startUpdatingLocation()
         
-
                    
         // Do any additional setup after loading the view.
     }
@@ -54,7 +59,7 @@ class MapaViewController: UIViewController {
                 default:
                     break
                 }
-        mapa.userTrackingMode = .followWithHeading
+        
         
 }
     
@@ -62,13 +67,22 @@ class MapaViewController: UIViewController {
     @IBAction func EmpezarButt(_ sender: Any) {
         FinalizarBoton.isHidden = false
         InicioBoton.isHidden = true
+        kmContadorlbl.isHidden = false
+        kmlbl.isHidden = false
+        
+         enFuncionamiento = true
+        
          
+        
         
         
         
     }
     @IBAction func FinalizarButt(_ sender: Any) {
-        
+        enFuncionamiento = false
+        InicioBoton.isHidden = false
+        kmContadorlbl.isHidden = false
+        kmlbl.isHidden = false
     }
     
     }
@@ -84,18 +98,61 @@ extension MapaViewController:CLLocationManagerDelegate{
 
         let region:MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: span)
         mapa.setRegion(region, animated:true)
-
-        ArrayPuntos.append(myLocation)
-
-        var ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
-
-        print(myLocation)
         
         
+        
+       
+        if (enFuncionamiento){
+            
+            if (ArrayPuntos .isEmpty){
+            }else{
+                let puntoAnterior: MKMapPoint = MKMapPoint(((ArrayPuntos.last ?? nil)!))
+                let puntoActual: MKMapPoint = MKMapPoint(myLocation)
+                let distanciaRecorrida = puntoAnterior.distance(to: puntoActual)
+                KMTotales += distanciaRecorrida}
+            
+            
+             
+            
+            
+           
+            ArrayPuntos.append(myLocation)
+             print(myLocation)
+             ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
+            mapa.addOverlay(ruta!)
+            self.kmContadorlbl.text = String(format: "%.03f", KMTotales/1000)
+            
+            
+        }else{
+            ArrayPuntos.removeAll()
+        }
+        
+        
+        
+    }}
+extension MapaViewController:MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
+        if (overlay is MKPolyline){
+            let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.8)
+            renderer.lineWidth=4
+             return renderer
+        }
+    
+        
+       return nil
+   
+       
+        
+  
     }
+}
+
+
+    
         
         
-    }
+    
 
 
 
