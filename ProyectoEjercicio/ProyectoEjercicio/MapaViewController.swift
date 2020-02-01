@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 
+
 class MapaViewController: UIViewController {
     
     @IBOutlet weak var FinalizarBoton: UIButton!
@@ -18,10 +19,21 @@ class MapaViewController: UIViewController {
     @IBOutlet weak var mapa: MKMapView!
     @IBOutlet weak var InicioBoton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var cronometrolbl: UILabel!
+    @IBOutlet weak var minutoslbl: UILabel!
+    @IBOutlet weak var horaslbl: UILabel!
+    
     var KMTotales: Double=0
     var ruta: MKPolyline?
     var ArrayPuntos = [CLLocationCoordinate2D]()
     var enFuncionamiento = false
+    var cronometro = Timer()
+    var segundos: Int = 0
+    var minutos: Int = 0
+    var horas: Int = 0
+    var contador: Int=0
+    
+    
     let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -53,10 +65,10 @@ class MapaViewController: UIViewController {
                 case .restricted:
                  locationManager.requestWhenInUseAuthorization()
                 case .denied:
-               break
+                    break
                 case .authorizedAlways:
                     mapa.showsUserLocation = true
-               case .authorizedWhenInUse:
+                case .authorizedWhenInUse:
                     mapa.showsUserLocation = true
                 default:
                     break
@@ -72,9 +84,8 @@ class MapaViewController: UIViewController {
         kmContadorlbl.isHidden = false
         kmlbl.isHidden = false
         pauseButton.isHidden = false
-        
-         enFuncionamiento = true
-        
+        enFuncionamiento = true
+        cronometro = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(MapaViewController.UpdateTimer), userInfo: nil, repeats: true)
          
         
         
@@ -86,15 +97,50 @@ class MapaViewController: UIViewController {
         enFuncionamiento = false
         InicioBoton.isHidden = false
         pauseButton.isHidden = true
-    }
-    @IBAction func FinalizarButt(_ sender: Any) {
-        
-        
-        kmContadorlbl.isHidden = false
-        kmlbl.isHidden = false
+        cronometro.invalidate()
     }
     
+    
+    @IBAction func FinalizarButt(_ sender: Any) {
+        /*Se guardan todos los valores:
+         - cronometro, se guarda el tiempo en segundos al sacarlo en pantalla de la base de datos se formateara
+         - la distancia se guardara el valor en Km
+         - la ruta se guarda
+         - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
+        
+        
     }
+    
+    @objc func UpdateTimer(){
+         contador += 1
+         segundos += 1
+        if(contador % 60 == 0){
+            segundos = 0
+            minutos += 1
+            if(minutos % 60 == 0){
+                minutos = 0
+                horas += 1
+                
+            }
+            
+            
+        }
+        
+           
+        
+        
+        cronometrolbl.text = String(format: "%.2d",segundos)
+         minutoslbl.text = String (format: "%.2d",minutos)
+         horaslbl.text = String (format: "%.2d",horas)
+    }
+    
+    
+    }
+
+
+
+
+
     
 extension MapaViewController:CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -114,22 +160,17 @@ extension MapaViewController:CLLocationManagerDelegate{
         if (enFuncionamiento){
             
             if (ArrayPuntos .isEmpty){
-            }else{
+            }
+            else{
                 let puntoAnterior: MKMapPoint = MKMapPoint(((ArrayPuntos.last ?? nil)!))
                 let puntoActual: MKMapPoint = MKMapPoint(myLocation)
                 let distanciaRecorrida = puntoAnterior.distance(to: puntoActual)
                 KMTotales += distanciaRecorrida}
-            
-            
-             
-            
-            
-           
-            ArrayPuntos.append(myLocation)
-             print(myLocation)
-             ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
-            mapa.addOverlay(ruta!)
-            self.kmContadorlbl.text = String(format: "%.03f", KMTotales/1000)
+                ArrayPuntos.append(myLocation)
+                print(myLocation)
+                ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
+                mapa.addOverlay(ruta!)
+                self.kmContadorlbl.text = String(format: "%.03f", KMTotales/1000)
             
             
         }else{
@@ -138,7 +179,11 @@ extension MapaViewController:CLLocationManagerDelegate{
         
         
         
-    }}
+    }
+    
+}
+
+
 extension MapaViewController:MKMapViewDelegate{
     func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
         if (overlay is MKPolyline){
