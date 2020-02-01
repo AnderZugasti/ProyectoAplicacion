@@ -17,6 +17,7 @@ class MapaViewController: UIViewController {
     @IBOutlet weak var kmlbl: UILabel!
     @IBOutlet weak var mapa: MKMapView!
     @IBOutlet weak var InicioBoton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
     var KMTotales: Double=0
     var ruta: MKPolyline?
     var ArrayPuntos = [CLLocationCoordinate2D]()
@@ -30,6 +31,7 @@ class MapaViewController: UIViewController {
         FinalizarBoton.isHidden = true
         kmlbl.isHidden = true
         kmContadorlbl.isHidden = true
+        pauseButton.isHidden = true
         
         
         locationManager.delegate = self
@@ -69,6 +71,7 @@ class MapaViewController: UIViewController {
         InicioBoton.isHidden = true
         kmContadorlbl.isHidden = false
         kmlbl.isHidden = false
+        pauseButton.isHidden = false
         
          enFuncionamiento = true
         
@@ -78,9 +81,15 @@ class MapaViewController: UIViewController {
         
         
     }
-    @IBAction func FinalizarButt(_ sender: Any) {
+    
+    @IBAction func PauseButt(_ sender: Any) {
         enFuncionamiento = false
         InicioBoton.isHidden = false
+        pauseButton.isHidden = true
+    }
+    @IBAction func FinalizarButt(_ sender: Any) {
+        
+        
         kmContadorlbl.isHidden = false
         kmlbl.isHidden = false
     }
