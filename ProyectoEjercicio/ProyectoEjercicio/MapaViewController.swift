@@ -55,6 +55,10 @@ class MapaViewController: UIViewController {
                    
         // Do any additional setup after loading the view.
     }
+    
+    
+       
+        
     func localizar(){
         
        let status: CLAuthorizationStatus = CLLocationManager.authorizationStatus()
@@ -78,7 +82,12 @@ class MapaViewController: UIViewController {
         
         
 }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "finalizado") {
+        let destino = segue.destination as! ActividadFinalizadaViewController;
+        destino.KMTotales2 = KMTotales
+        destino.cronometro2 = contador
+        destino.ruta2 = ruta
+        }}
     
     @IBAction func EmpezarButt(_ sender: Any) {
         FinalizarBoton.isHidden = false
@@ -111,9 +120,7 @@ class MapaViewController: UIViewController {
          - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
        enFuncionamiento = false
        cronometro.invalidate()
-        let tiempo = cronometro
-        let distancia = String(format: "%.02f", KMTotales/1000)
-        let recorrido = ruta!
+        
        
         
         
