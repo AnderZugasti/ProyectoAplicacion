@@ -8,6 +8,6 @@ target 'ProyectoEjercicio' do
   # Pods for ProyectoEjercicio
  pod 'Alamofire'
  pod 'SwiftyJSON'
- pod 'SideMenu'
+ pod 'RealmSwift'
 
 end

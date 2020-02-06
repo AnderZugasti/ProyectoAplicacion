@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Foundation
+import RealmSwift
 
 
 
@@ -107,6 +109,12 @@ class MapaViewController: UIViewController {
          - la distancia se guardara el valor en Km
          - la ruta se guarda
          - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
+       enFuncionamiento = false
+       cronometro.invalidate()
+        let tiempo = cronometro
+        let distancia = String(format: "%.02f", KMTotales/1000)
+        let recorrido = ruta!
+       
         
         
     }
@@ -136,6 +144,14 @@ class MapaViewController: UIViewController {
     
     
     }
+
+    
+    
+    
+    
+    
+    
+    
 
 
 
