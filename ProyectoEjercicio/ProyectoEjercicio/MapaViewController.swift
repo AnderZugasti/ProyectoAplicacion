@@ -35,7 +35,7 @@ class MapaViewController: UIViewController {
     var horas: Int = 0
     var contador: Int=0
     
-    
+    var puntoAnterior: MKMapPoint?
     let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -86,7 +86,7 @@ class MapaViewController: UIViewController {
         let destino = segue.destination as! ActividadFinalizadaViewController;
         destino.KMTotales2 = KMTotales
         destino.cronometro2 = contador
-        destino.ruta2 = ruta
+        destino.ruta2 = ArrayPuntos
         }}
     
     @IBAction func EmpezarButt(_ sender: Any) {
@@ -180,29 +180,25 @@ extension MapaViewController:CLLocationManagerDelegate{
         
         
        
-        if (enFuncionamiento){
+        if (enFuncionamiento ){
             
             if (ArrayPuntos .isEmpty){
             }
             else{
-                let puntoAnterior: MKMapPoint = MKMapPoint(((ArrayPuntos.last ?? nil)!))
+                puntoAnterior = MKMapPoint(((ArrayPuntos.last ?? nil)!))
                 let puntoActual: MKMapPoint = MKMapPoint(myLocation)
-                let distanciaRecorrida = puntoAnterior.distance(to: puntoActual)
+                let distanciaRecorrida = puntoAnterior!.distance(to: puntoActual)
                 KMTotales += distanciaRecorrida}
                 ArrayPuntos.append(myLocation)
-                print(myLocation)
                 ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
                 mapa.addOverlay(ruta!)
                 self.kmContadorlbl.text = String(format: "%.03f", KMTotales/1000)
             
             
         }else{
-            ArrayPuntos.removeAll()
-        }
-        
-        
-        
-    }
+            
+                ArrayPuntos.removeAll()}
+            }
     
 }
 
@@ -211,7 +207,11 @@ extension MapaViewController:MKMapViewDelegate{
     func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
         if (overlay is MKPolyline){
             let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+            
             renderer.strokeColor = UIColor.blue.withAlphaComponent(0.8)
+           
+               
+           
             renderer.lineWidth=4
              return renderer
         }
