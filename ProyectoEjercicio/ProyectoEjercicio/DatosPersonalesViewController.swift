@@ -41,13 +41,10 @@ class DatosPersonalesViewController: UIViewController {
            
             pesotxt.text = UserDefaults.standard.string(forKey: "Peso")
             print(UserDefaults.standard.string(forKey: "objetivoCorrer"))
-            print(UserDefaults.standard.string(forKey: "objetivoAndando")!)
+            print(UserDefaults.standard.string(forKey: "objetivoBici"))
             print(UserDefaults.standard.dictionaryRepresentation().keys)
-            
-        if ((UserDefaults.standard.string(forKey: "Altura")) != nil && (UserDefaults.standard.string(forKey: "Peso")) != nil){
+            calcularGordura()
         
-               
-        }
     }
     
     @IBAction func Guardar_Editar(_ sender: Any) {
@@ -58,22 +55,46 @@ class DatosPersonalesViewController: UIViewController {
             def.set(objetivoAndando.text,forKey:"objetivoAndando")
         }
          if ((UserDefaults.standard.string(forKey: "objetivoCorrer")) == nil){
-            def.set(objetivoCorrer, forKey: "objetivoCorrer")
+            def.set(objetivoCorrer.text, forKey: "objetivoCorrer")
         }
          if ((UserDefaults.standard.string(forKey: "objetivoBici")) == nil){
-             def.set(objetivoBici, forKey: "objetivoBici")
+            def.set(objetivoBici.text, forKey: "objetivoBici")
         }
+        def.set(pesotxt.text, forKey: "Peso")
+        def.synchronize()
+        let alertController = UIAlertController(title:"Datos guardados con exito", message: "Gracias",preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+        calcularGordura()
         
-            
-            
-            def.set(pesotxt.text, forKey: "Peso")
-            
-            
-           
-            def.synchronize()
-            
-        
-        
+    }
+    func calcularGordura(){
+        if ((UserDefaults.standard.string(forKey: "Altura")) != nil && (UserDefaults.standard.string(forKey: "Peso")) != nil){
+            let altura = Double(alturatxt.text!)!
+            let peso = Double(pesotxt.text!)!
+            let estado = (peso / pow(altura / 100, 2))
+            print (altura, peso, estado)
+            switch estado {
+            case 0 ... 18,4:
+                gorduralbl.text = "Peso insuficiente"
+                gorduralbl.textColor = UIColor.blue
+                
+            case 18,5 ... 24,9:
+                gorduralbl.text = "Normopeso"
+                gorduralbl.textColor = UIColor.green
+                
+            case 25,0 ... 29,8:
+                gorduralbl.text = "Sobrepeso"
+                gorduralbl.textColor = UIColor.orange
+                break
+            default:
+                gorduralbl.text = "Obesidad"
+                gorduralbl.textColor = UIColor.red
+            }
+        }
     }
     
 }
