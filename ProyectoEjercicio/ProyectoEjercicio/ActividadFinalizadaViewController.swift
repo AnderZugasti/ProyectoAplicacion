@@ -13,7 +13,7 @@ class ActividadFinalizadaViewController: UIViewController {
     
     var cronometro2: Int = 0
     var KMTotales2: Double = 0.0
-    var ruta2 = [CLLocationCoordinate2D]()
+    var ruta2 = [[CLLocationCoordinate2D]]()
     var horas:Int = 0
     var minutos: Int = 0
     var segundos: Int = 0
@@ -36,7 +36,7 @@ class ActividadFinalizadaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: ruta2[(ruta2.count)/2], span: span)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: (ruta2[0][0]), span: span)
         mapa2.setRegion(region, animated:true)
         mapa2.delegate = self
         distancia.text = String(format: "%.02f", KMTotales2/1000)
@@ -45,8 +45,12 @@ class ActividadFinalizadaViewController: UIViewController {
         calcularKM_min()
         Km_min.text = String("\(horas2)h \(minutos2)min \(segundos2)s")
         print(ruta2)
-        polilinea = MKPolyline(coordinates: ruta2, count: ruta2.count)
-        mapa2.addOverlay(polilinea!)
+        for ruta in ruta2 {
+            polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
+            mapa2.addOverlay(polilinea!)
+        }
+            
+        
 
     }
     

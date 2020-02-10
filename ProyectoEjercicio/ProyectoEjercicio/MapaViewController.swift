@@ -28,13 +28,14 @@ class MapaViewController: UIViewController {
     var KMTotales: Double=0
     var ruta: MKPolyline?
     var ArrayPuntos = [CLLocationCoordinate2D]()
+    var rutaFinal = [[CLLocationCoordinate2D]]()
     var enFuncionamiento = false
     var cronometro = Timer()
     var segundos: Int = 0
     var minutos: Int = 0
     var horas: Int = 0
     var contador: Int=0
-    
+    var enPausa: Bool = true
     var puntoAnterior: MKMapPoint?
     let locationManager = CLLocationManager()
 
@@ -86,18 +87,18 @@ class MapaViewController: UIViewController {
         let destino = segue.destination as! ActividadFinalizadaViewController;
         destino.KMTotales2 = KMTotales
         destino.cronometro2 = contador
-        destino.ruta2 = ArrayPuntos
+        destino.ruta2 = rutaFinal
         }}
     
     @IBAction func EmpezarButt(_ sender: Any) {
-        FinalizarBoton.isHidden = false
+        FinalizarBoton.isHidden = true
         InicioBoton.isHidden = true
         kmContadorlbl.isHidden = false
         kmlbl.isHidden = false
         pauseButton.isHidden = false
         enFuncionamiento = true
         cronometro = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(MapaViewController.UpdateTimer), userInfo: nil, repeats: true)
-         
+        enPausa = false
         
         
         
@@ -105,10 +106,11 @@ class MapaViewController: UIViewController {
     }
     
     @IBAction func PauseButt(_ sender: Any) {
-        enFuncionamiento = false
+        enPausa = true
         InicioBoton.isHidden = false
         pauseButton.isHidden = true
         cronometro.invalidate()
+        FinalizarBoton.isHidden = false
     }
     
     
@@ -120,7 +122,7 @@ class MapaViewController: UIViewController {
          - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
        enFuncionamiento = false
        cronometro.invalidate()
-        
+       enPausa = true
        
         
         
@@ -180,7 +182,7 @@ extension MapaViewController:CLLocationManagerDelegate{
         
         
        
-        if (enFuncionamiento ){
+        if (!enPausa ){
             
             if (ArrayPuntos .isEmpty){
             }
@@ -196,10 +198,14 @@ extension MapaViewController:CLLocationManagerDelegate{
             
             
         }else{
-            
-                ArrayPuntos.removeAll()}
+            if (enFuncionamiento && !ArrayPuntos.isEmpty){
+                rutaFinal.append(ArrayPuntos)
+                ArrayPuntos.removeAll()
             }
+            
     
+}
+}
 }
 
 
