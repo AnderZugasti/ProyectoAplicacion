@@ -40,9 +40,7 @@ class DatosPersonalesViewController: UIViewController {
         }
            
             pesotxt.text = UserDefaults.standard.string(forKey: "Peso")
-            print(UserDefaults.standard.string(forKey: "objetivoCorrer"))
-            print(UserDefaults.standard.string(forKey: "objetivoBici"))
-            print(UserDefaults.standard.dictionaryRepresentation().keys)
+        
             calcularGordura()
         
     }

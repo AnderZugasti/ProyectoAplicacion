@@ -7,41 +7,34 @@
 //
 
 import UIKit
-import MapKit
-import CoreLocation
 
 class ViewController: UIViewController {
     
     
-    
-    
    
-
+    
+    @IBOutlet weak var Menu: UIStackView!
+    
+    @IBOutlet weak var buttMenu: UIBarButtonItem!
+    var activo = false
+   
+    
+    @IBOutlet weak var pantallaAzul: UIView!
+    
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        
-
-                   
-        
-//        switch status {
-//
-//
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        case .restricted:
-//             locationManager.requestWhenInUseAuthorization()
-//        case .denied:
-//       break
-//        case .authorizedAlways:
-//            mapa.showsUserLocation = true
-//       case .authorizedWhenInUse:
-//            mapa.showsUserLocation = true
-//        default:
-//            break
-//        }
+        Menu.isHidden = true
+    }
     
-    
+    @IBAction func menuBut(_ sender: Any) {
+        if (!activo){
+            Menu.isHidden = false
+            activo = true
+        }else{
+            Menu.isHidden = true
+            activo = false
+        }
     }
 }
 

@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Foundation
+import Realm
 
 class ActividadFinalizadaViewController: UIViewController {
     
@@ -23,16 +25,20 @@ class ActividadFinalizadaViewController: UIViewController {
     var segundos2: Int = 0
     var polilinea : MKPolyline?
      
-    
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapa2: MKMapView!
-    
-    @IBOutlet weak var Km_min: UILabel!
-    
+    /*@IBOutlet weak var lblObjetivo: UILabel!*/
+    @IBOutlet weak var KM_min: UILabel!
     @IBOutlet weak var distancia: UILabel!
     @IBOutlet weak var tiempo: UILabel!
     
+    class Ruta: NSObject {
+        @objc dynamic var distancia: Double = 0.0
+        @objc dynamic var tiempo = ""
+        @objc dynamic var recorrido = [[CLLocationCoordinate2D]]()
+        @objc dynamic var tienpoPorKm = ""
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
@@ -43,8 +49,8 @@ class ActividadFinalizadaViewController: UIViewController {
         calcularTiempo()
         tiempo.text = String("\(horas)h \(minutos)min \(segundos)s")
         calcularKM_min()
-        Km_min.text = String("\(horas2)h \(minutos2)min \(segundos2)s")
-        print(ruta2)
+        KM_min.text = String("\(horas2)h \(minutos2)min \(segundos2)s")
+        
         for ruta in ruta2 {
             polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
             mapa2.addOverlay(polilinea!)
@@ -67,18 +73,21 @@ class ActividadFinalizadaViewController: UIViewController {
         if ((KMTotales2 / 1000) > 1.0){
             print ("ok")
             let tiempoPara1Km = Int(tiempoS / KMTotales2)
-            horas2 = tiempoPara1Km / 3600
-            minutos2 = (tiempoPara1Km-(horas2*3600))/60
-            segundos2 = (((tiempoPara1Km)-(horas2*3600))-(60*minutos2))
+            
+            minutos2 = tiempoPara1Km/60
+            segundos2 = (tiempoPara1Km)-(60*minutos2)
             }
         else{
-            Km_min.text = "Ruta muy corta"
+            KM_min.text = "Ruta muy corta"
         }
     }
     
     
+    
+    
 
 }
+
 extension ActividadFinalizadaViewController:MKMapViewDelegate{
   func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
       if (overlay is MKPolyline){
