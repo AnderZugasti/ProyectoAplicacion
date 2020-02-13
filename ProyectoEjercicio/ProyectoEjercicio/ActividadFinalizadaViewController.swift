@@ -24,6 +24,12 @@ class ActividadFinalizadaViewController: UIViewController {
     var minutos2: Int = 0
     var segundos2: Int = 0
     var polilinea : MKPolyline?
+    var objetivo = 0
+    var ejercicio = ""
+    let fecha = Date()
+    let formater = DateFormatter()
+    
+
      
     let locationManager = CLLocationManager()
     
@@ -34,10 +40,17 @@ class ActividadFinalizadaViewController: UIViewController {
     @IBOutlet weak var tiempo: UILabel!
     
     class Ruta: NSObject {
-        @objc dynamic var distancia: Double = 0.0
+        @objc dynamic var distancia = ""
         @objc dynamic var tiempo = ""
         @objc dynamic var recorrido = [[CLLocationCoordinate2D]]()
         @objc dynamic var tienpoPorKm = ""
+        @objc dynamic var dia = ""
+        @objc dynamic var deporte = ""
+        
+        
+        
+         
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +68,8 @@ class ActividadFinalizadaViewController: UIViewController {
             polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
             mapa2.addOverlay(polilinea!)
         }
-            
         
-
+       
     }
     
     func calcularTiempo(){
@@ -81,7 +93,24 @@ class ActividadFinalizadaViewController: UIViewController {
             KM_min.text = "Ruta muy corta"
         }
     }
-    
+    func guardaDatos(){
+        formater.dateFormat = "dd.MM.yyyy"
+        let result = formater.string(from: fecha)
+        /*Datos para guardar*/
+        let KMGuardar = distancia.text
+        let TiempoGuardar = tiempo.textInputContextIdentifier
+        let KMinGuardar = KM_min.text
+        let recorridoGuardar = ruta2
+        
+        var nuevoRecorrido = Ruta()
+        nuevoRecorrido.distancia = KMGuardar!
+        nuevoRecorrido.tiempo = TiempoGuardar!
+        nuevoRecorrido.recorrido = recorridoGuardar
+        nuevoRecorrido.tienpoPorKm = KMGuardar!
+        nuevoRecorrido.dia = result
+        nuevoRecorrido.deporte = ejercicio
+        
+    }
     
     
     

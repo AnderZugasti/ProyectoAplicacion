@@ -37,10 +37,21 @@ class MapaViewController: UIViewController {
     var enPausa: Bool = true
     var puntoAnterior: MKMapPoint?
     let locationManager = CLLocationManager()
+    var seleccionEjercicio = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        switch seleccionEjercicio {
+        case 1:
+            self.title = "Corriendo "
+        case 2:
+            self.title = "En bici"
+        case 3:
+            self.title = "Andando"
+        default:
+            self.title = "Ejerci"
+        }
+        
         localizar()
         FinalizarBoton.isHidden = true
         kmlbl.isHidden = true

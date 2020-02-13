@@ -7,36 +7,48 @@
 //
 
 import UIKit
+import SideMenu
 
 class ViewController: UIViewController {
     
     
-   
     
-    @IBOutlet weak var Menu: UIStackView!
-    
-    @IBOutlet weak var buttMenu: UIBarButtonItem!
-    var activo = false
-   
-    
-    @IBOutlet weak var pantallaAzul: UIView!
     
     override func viewDidLoad() {
-       
+
+        
+        
         super.viewDidLoad()
-        Menu.isHidden = true
+       
+    }
+    @IBAction func correrbut(_ sender: Any) {
+        select = 1
+    }
+    @IBAction func bicibut(_ sender: Any) {
+        select = 2
+    }
+    @IBAction func andarbut(_ sender: Any) {
+        select = 3
+    }
+    var select = 0
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if( segue.identifier == "correr") {
+        let destino = segue.destination as! MapaViewController;
+            destino.seleccionEjercicio = 1
+        }
+        
+            
+        
+    
+    
+    }
+    @IBAction func munuButt(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @IBAction func menuBut(_ sender: Any) {
-        if (!activo){
-            Menu.isHidden = false
-            activo = true
-        }else{
-            Menu.isHidden = true
-            activo = false
-        }
-    }
+   
 }
+
 
 
 

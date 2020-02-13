@@ -9,5 +9,6 @@ target 'ProyectoEjercicio' do
  pod 'Alamofire'
  pod 'SwiftyJSON'
  pod 'RealmSwift'
+ pod 'SideMenu'
 
 end
