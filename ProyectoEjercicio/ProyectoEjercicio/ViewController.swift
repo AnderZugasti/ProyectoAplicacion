@@ -11,42 +11,15 @@ import SideMenu
 
 class ViewController: UIViewController {
     
-    
-    
-    
     override func viewDidLoad() {
-
-        
-        
         super.viewDidLoad()
-       
     }
-    @IBAction func correrbut(_ sender: Any) {
-        select = 1
-    }
-    @IBAction func bicibut(_ sender: Any) {
-        select = 2
-    }
-    @IBAction func andarbut(_ sender: Any) {
-        select = 3
-    }
-    var select = 0
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if( segue.identifier == "correr") {
-        let destino = segue.destination as! MapaViewController;
-            destino.seleccionEjercicio = 1
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(self.navigationController!.isToolbarHidden){
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
         }
-        
-            
-        
-    
-    
     }
-    @IBAction func munuButt(_ sender: Any) {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-    }
-    
-   
 }
 
 

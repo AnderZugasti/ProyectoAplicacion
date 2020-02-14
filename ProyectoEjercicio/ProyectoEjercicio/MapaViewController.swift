@@ -23,6 +23,8 @@ class MapaViewController: UIViewController {
     @IBOutlet weak var cronometrolbl: UILabel!
     @IBOutlet weak var minutoslbl: UILabel!
     @IBOutlet weak var horaslbl: UILabel!
+    @IBOutlet weak var textoObjetivo: UILabel!
+    
     
     var KMTotales: Double=0
     var ruta: MKPolyline?
@@ -38,6 +40,7 @@ class MapaViewController: UIViewController {
     var puntoAnterior: MKMapPoint?
     let locationManager = CLLocationManager()
     var seleccionEjercicio = 0
+    var objetivo = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +70,20 @@ class MapaViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    func sacarObjetivo(numero: Int){
+        switch numero {
+        case 1:
+            objetivo = UserDefaults.standard.string(forKey: "objetivoCorrer")!
+        case 2:
+            objetivo = UserDefaults.standard.string(forKey: "objetivoBici")!
+        case 3:
+            objetivo = UserDefaults.standard.string(forKey: "objetivoAndando")!
+        default:
+            objetivo = "ninguno"
+        }
+        textoObjetivo.text = "Objetivo a superar  " + objetivo + " Km"
+        
+    }
        
         
     func localizar(){
@@ -98,6 +114,7 @@ class MapaViewController: UIViewController {
         destino.KMTotales2 = KMTotales
         destino.cronometro2 = contador
         destino.ruta2 = rutaFinal
+        destino.objetivo = seleccionEjercicio
         }}
     
     @IBAction func EmpezarButt(_ sender: Any) {
@@ -109,6 +126,7 @@ class MapaViewController: UIViewController {
         enFuncionamiento = true
         cronometro = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(MapaViewController.UpdateTimer), userInfo: nil, repeats: true)
         enPausa = false
+        sacarObjetivo(numero: seleccionEjercicio)
         
         
         
@@ -126,10 +144,7 @@ class MapaViewController: UIViewController {
     
     @IBAction func FinalizarButt(_ sender: Any) {
         /*Se guardan todos los valores:
-         - cronometro, se guarda el tiempo en segundos al sacarlo en pantalla de la base de datos se formateara
-         - la distancia se guardara el valor en Km
-         - la ruta se guarda
-         - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
+        - generar un diccionario de tiempo por kilometro se guardara el tiempo mas bajo y el tiempo mas alto */
        enFuncionamiento = false
        cronometro.invalidate()
        enPausa = true
@@ -200,7 +215,12 @@ extension MapaViewController:CLLocationManagerDelegate{
                 puntoAnterior = MKMapPoint(((ArrayPuntos.last ?? nil)!))
                 let puntoActual: MKMapPoint = MKMapPoint(myLocation)
                 let distanciaRecorrida = puntoAnterior!.distance(to: puntoActual)
-                KMTotales += distanciaRecorrida}
+                KMTotales += distanciaRecorrida
+                var aSuperar = Double(objetivo)!*1000
+                if (aSuperar < KMTotales){
+                    textoObjetivo.text = "El objetivo de " + objetivo + "ha sido superado"
+                }
+            }
                 ArrayPuntos.append(myLocation)
                 ruta = MKPolyline(coordinates: ArrayPuntos, count:  ArrayPuntos.count)
                 mapa.addOverlay(ruta!)

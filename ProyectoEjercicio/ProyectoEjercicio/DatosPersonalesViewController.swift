@@ -60,6 +60,9 @@ class DatosPersonalesViewController: UIViewController {
         }
         def.set(pesotxt.text, forKey: "Peso")
         def.synchronize()
+        
+        
+        
         let alertController = UIAlertController(title:"Datos guardados con exito", message: "Gracias",preferredStyle: UIAlertController.Style.alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             
