@@ -27,9 +27,10 @@ class MenuViewController: UITableViewController {
         case "andar":
             let destino = segue.destination as! MapaViewController;
             destino.seleccionEjercicio = 3
+            
         default:
-            let destino = segue.destination as! MapaViewController;
-            destino.seleccionEjercicio = 0
+            print("nada")
+            
             
         }
         

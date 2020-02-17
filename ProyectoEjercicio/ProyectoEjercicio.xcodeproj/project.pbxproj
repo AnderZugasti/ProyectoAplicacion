@@ -17,6 +17,8 @@
 		B34227BE23D30072002D71DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227BC23D30072002D71DA /* Main.storyboard */; };
 		B34227C023D30074002D71DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34227BF23D30074002D71DA /* Assets.xcassets */; };
 		B34227C323D30074002D71DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227C123D30074002D71DA /* LaunchScreen.storyboard */; };
+		B35D2C3B23F802B6006DB830 /* RutasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D2C3A23F802B6006DB830 /* RutasTableViewController.swift */; };
+		B35D2C3D23F80AAA006DB830 /* RutaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D2C3C23F80AAA006DB830 /* RutaTableViewCell.swift */; };
 		B38CE59823DCC4E3001C3670 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38CE59723DCC4E3001C3670 /* MapKit.framework */; };
 		B3D9CB9D23E81BAA00ADB849 /* DatosPersonalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9CB9C23E81BAA00ADB849 /* DatosPersonalesViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,8 @@
 		B34227BF23D30074002D71DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34227C223D30074002D71DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34227C423D30074002D71DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B35D2C3A23F802B6006DB830 /* RutasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutasTableViewController.swift; sourceTree = "<group>"; };
+		B35D2C3C23F80AAA006DB830 /* RutaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutaTableViewCell.swift; sourceTree = "<group>"; };
 		B38CE59723DCC4E3001C3670 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3D9CB9C23E81BAA00ADB849 /* DatosPersonalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosPersonalesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +107,8 @@
 				B3D9CB9C23E81BAA00ADB849 /* DatosPersonalesViewController.swift */,
 				42A13B5B23EC6EC80074937B /* ActividadFinalizadaViewController.swift */,
 				427D795623F713EF0012BB60 /* MenuViewController.swift */,
+				B35D2C3A23F802B6006DB830 /* RutasTableViewController.swift */,
+				B35D2C3C23F80AAA006DB830 /* RutaTableViewCell.swift */,
 			);
 			path = ProyectoEjercicio;
 			sourceTree = "<group>";
@@ -224,11 +230,13 @@
 			files = (
 				B34227BB23D30072002D71DA /* ViewController.swift in Sources */,
 				B3D9CB9D23E81BAA00ADB849 /* DatosPersonalesViewController.swift in Sources */,
+				B35D2C3D23F80AAA006DB830 /* RutaTableViewCell.swift in Sources */,
 				42D8334623E4A146006C42CD /* MapaViewController.swift in Sources */,
 				427D795723F713EF0012BB60 /* MenuViewController.swift in Sources */,
 				42A13B5C23EC6EC80074937B /* ActividadFinalizadaViewController.swift in Sources */,
 				B34227B723D30072002D71DA /* AppDelegate.swift in Sources */,
 				B34227B923D30072002D71DA /* SceneDelegate.swift in Sources */,
+				B35D2C3B23F802B6006DB830 /* RutasTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

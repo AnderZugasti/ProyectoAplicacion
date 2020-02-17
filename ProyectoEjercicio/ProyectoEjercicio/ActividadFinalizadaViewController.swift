@@ -10,6 +10,19 @@ import UIKit
 import MapKit
 import Foundation
 import RealmSwift
+class Ruta: Object {
+    @objc dynamic var distancia = ""
+    @objc dynamic var tiempo = ""
+    var recorrido = [[CLLocationCoordinate2D]]()
+    @objc dynamic var tienpoPorKm = ""
+    @objc dynamic var dia = ""
+    @objc dynamic var deporte = ""
+    
+    
+
+     
+    
+}
 
 class ActividadFinalizadaViewController: UIViewController {
     
@@ -36,24 +49,12 @@ class ActividadFinalizadaViewController: UIViewController {
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapa2: MKMapView!
-    @IBOutlet weak var lblObjetivo: UILabel!
     @IBOutlet weak var KM_min: UILabel!
     @IBOutlet weak var distancia: UILabel!
     @IBOutlet weak var tiempo: UILabel!
+    @IBOutlet weak var objetivolbl: UILabel!
     
-    class Ruta: Object {
-        @objc dynamic var distancia = ""
-        @objc dynamic var tiempo = ""
-        @objc dynamic var recorrido = [[CLLocationCoordinate2D]]()
-        @objc dynamic var tienpoPorKm = ""
-        @objc dynamic var dia = ""
-        @objc dynamic var deporte = ""
-        
-        
-
-         
-        
-    }
+    
     
     
     override func viewDidLoad() {
@@ -68,7 +69,7 @@ class ActividadFinalizadaViewController: UIViewController {
         tiempo.text = String("\(horas)h \(minutos)min \(segundos)s")
         calcularKM_min()
         KM_min.text = String("\(minutos2)min \(segundos2)s")
-        
+        Objetivo(numero: objetivo)
         
         for ruta in ruta2 {
             polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
@@ -94,7 +95,7 @@ class ActividadFinalizadaViewController: UIViewController {
         default:
             ejercicio = "ninguno"
         }
-        let reto: Double = Double(ejercicio) as! Double
+        let reto: Double = Double(ejercicio)!
         if (KMTotales2/1000 >  reto){
             switch numero {
             case 1:
@@ -107,11 +108,11 @@ class ActividadFinalizadaViewController: UIViewController {
             default:
                 ejercicio = "ninguno"
             }
-            lblObjetivo.text = "objetivo superado"
+            objetivolbl.text = "objetivo superado"
             
         }
         else{
-            lblObjetivo.text = "objetivo no superado"
+            objetivolbl.text = "objetivo no superado"
         }
         
     }
@@ -147,7 +148,7 @@ class ActividadFinalizadaViewController: UIViewController {
         let result = formater.string(from: fecha)
         /*Datos para guardar*/
         let KMGuardar = distancia.text
-        let TiempoGuardar = tiempo.textInputContextIdentifier
+        let TiempoGuardar = tiempo.text
         let KMinGuardar = KM_min.text
         let recorridoGuardar = ruta2
         
@@ -167,6 +168,7 @@ class ActividadFinalizadaViewController: UIViewController {
         let alertController = UIAlertController(title:"¿Esta seguro que desea guardar los datos?", message: "",preferredStyle: UIAlertController.Style.alert)
         
         let GuardarAction = UIAlertAction(title: "Guardar", style: .default) { (action) in
+            
             let realm = try! Realm()
             let rutaAGuardar = self.guardaDatos()
             try! realm.write{
