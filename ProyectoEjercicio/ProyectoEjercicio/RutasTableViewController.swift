@@ -24,10 +24,14 @@ class RutasTableViewController: UITableViewController {
         //print (rutas)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
+    
+    
 
     // MARK: - Table view data source
 
@@ -49,11 +53,19 @@ class RutasTableViewController: UITableViewController {
         cell.fechalbl.text = rutas[num].dia
         cell.tiempolbl.text = rutas[num].tiempo
         cell.distancialbl.text = rutas[num].distancia
+        + " Km"
+       
         switch rutas[num].deporte {
         case "Correr":
             cell.icono.image =  UIImage(named:"correr" )
+            cell.backgroundColor = UIColor.blue.withAlphaComponent(0.2)
+            cell.layer.borderColor = UIColor.blue.withAlphaComponent(0.7).cgColor
+            cell.layer.borderWidth = 1.2
         case "Bici":
             cell.icono.image =  UIImage(named:"bici" )
+            cell.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+            cell.layer.borderColor = UIColor.gray.withAlphaComponent(0.7).cgColor
+            cell.layer.borderWidth = 1.7
         case "Andar":
             cell.icono.image = UIImage(named: "andando")
 

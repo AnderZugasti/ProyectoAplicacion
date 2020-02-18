@@ -165,23 +165,20 @@ class ActividadFinalizadaViewController: UIViewController {
     }
     
     @IBAction func GuardarButt(_ sender: Any) {
-        let alertController = UIAlertController(title:"¿Esta seguro que desea guardar los datos?", message: "",preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title:"Ruta guardad con exito", message: "",preferredStyle: UIAlertController.Style.alert)
         
-        let GuardarAction = UIAlertAction(title: "Guardar", style: .default) { (action) in
-            
+        
             let realm = try! Realm()
             let rutaAGuardar = self.guardaDatos()
             try! realm.write{
             realm.add(rutaAGuardar)
-            self.navigationController?.popToRootViewController(animated: true)
-                
-            }
-        }
-        let CancelarAction = UIAlertAction(title: "Cancelar", style: .cancel) { (action) in
             
+            }
+        let CancelarAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            self.navigationController?.popToRootViewController(animated: true)
         }
         alertController.addAction(CancelarAction)
-        alertController.addAction(GuardarAction)
+       
         
         self.present(alertController, animated: true)
         }
