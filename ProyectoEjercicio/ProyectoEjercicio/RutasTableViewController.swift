@@ -21,12 +21,7 @@ class RutasTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //print (rutas)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     
@@ -63,8 +58,8 @@ class RutasTableViewController: UITableViewController {
             cell.layer.borderWidth = 1.2
         case "Bici":
             cell.icono.image =  UIImage(named:"bici" )
-            cell.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
-            cell.layer.borderColor = UIColor.gray.withAlphaComponent(0.7).cgColor
+            cell.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+            cell.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
             cell.layer.borderWidth = 1.7
         case "Andar":
             cell.icono.image = UIImage(named: "andando")
@@ -76,7 +71,13 @@ class RutasTableViewController: UITableViewController {
 
         return cell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("Actividad seleccionada");
+
+        
+        }
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -123,4 +124,4 @@ class RutasTableViewController: UITableViewController {
     }
     */
 
-}
+
