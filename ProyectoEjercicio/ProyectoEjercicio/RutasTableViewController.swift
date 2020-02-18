@@ -55,12 +55,12 @@ class RutasTableViewController: UITableViewController {
             cell.icono.image =  UIImage(named:"correr" )
             cell.backgroundColor = UIColor.blue.withAlphaComponent(0.2)
             cell.layer.borderColor = UIColor.blue.withAlphaComponent(0.7).cgColor
-            cell.layer.borderWidth = 1.2
+            cell.layer.borderWidth = 2
         case "Bici":
             cell.icono.image =  UIImage(named:"bici" )
             cell.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             cell.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
-            cell.layer.borderWidth = 1.7
+            cell.layer.borderWidth = 2
         case "Andar":
             cell.icono.image = UIImage(named: "andando")
 
@@ -73,7 +73,7 @@ class RutasTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("Actividad seleccionada");
-
+        var enviar = rutas[indexPath.row]
         
         }
     }
