@@ -110,7 +110,7 @@ class MapaViewController: UIViewController {
         
 }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "finalizado") {
-        let destino = segue.destination as! ActividadFinalizadaViewController;
+        let destino = segue.destination as! ActividadFinalizadaViewController
         destino.KMTotales2 = KMTotales
         destino.cronometro2 = contador
         destino.ruta2 = rutaFinal

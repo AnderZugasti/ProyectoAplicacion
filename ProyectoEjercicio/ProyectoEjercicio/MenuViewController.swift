@@ -29,7 +29,7 @@ class MenuViewController: UITableViewController {
             destino.seleccionEjercicio = 3
             
         default:
-            print("nada")
+            print("datos")
             
             
         }

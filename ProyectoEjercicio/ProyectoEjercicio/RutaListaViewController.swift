@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class RutaListaViewController: UIViewController {
-    
+
     @IBOutlet weak var fechaLbl: UILabel!
     @IBOutlet weak var distanciaLbl: UILabel!
     @IBOutlet weak var tiempoLbl: UILabel!
@@ -18,11 +18,15 @@ class RutaListaViewController: UIViewController {
     @IBOutlet weak var mapa: MKMapView!
     
     var tag: Int = 0
-    var rutas: [Ruta] = []
+    var rutas: Ruta? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: ((rutas?.recorrido[0][0])!), span: span)
+        mapa.setRegion(region, animated:true)
+        mapa.delegate = self as! MKMapViewDelegate
         
        
         // Do any additional setup after loading the view.
@@ -40,3 +44,23 @@ class RutaListaViewController: UIViewController {
     */
 
 }
+
+
+extension RutaListaViewController:MKMapViewDelegate{
+  func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
+      if (overlay is MKPolyline){
+          let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+          renderer.strokeColor = UIColor.blue.withAlphaComponent(0.8)
+          renderer.lineWidth=4
+           return renderer
+      }
+  
+      
+     return nil
+ 
+     
+      
+
+  }
+}
+

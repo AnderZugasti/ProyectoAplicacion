@@ -10,7 +10,8 @@ import UIKit
 import RealmSwift
 
 class RutasTableViewController: UITableViewController {
-
+    var tag = 0
+    
    let realm = try! Realm() // [1]
     var rutas: Results<Ruta> { // [2]
         get{
@@ -55,6 +56,7 @@ class RutasTableViewController: UITableViewController {
             cell.icono.image =  UIImage(named:"correr" )
             cell.backgroundColor = UIColor.blue.withAlphaComponent(0.2)
             cell.layer.borderColor = UIColor.blue.withAlphaComponent(0.7).cgColor
+            
             cell.layer.borderWidth = 2
         case "Bici":
             cell.icono.image =  UIImage(named:"bici" )
@@ -67,15 +69,27 @@ class RutasTableViewController: UITableViewController {
         default:
             print ("no foto")
         }
+        
+        
+        
         //Configure the cel
 
         return cell
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NSLog("Actividad seleccionada");
-        var enviar = rutas[indexPath.row]
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
+        let destino = segue.destination as! RutaListaViewController
+        destino.tag = tag
+        destino.rutas = rutas[tag]
+       print("no pasa")
         
-        }
+        }}
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier:"seleccion", sender: indexPath.row)
+        tag = indexPath.row
+        
+    
     }
 
 
@@ -125,3 +139,4 @@ class RutasTableViewController: UITableViewController {
     */
 
 
+}
