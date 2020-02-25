@@ -11,25 +11,31 @@ import MapKit
 import Foundation
 import RealmSwift
 class Ruta: Object {
+    @objc dynamic var id = 0
     @objc dynamic var distancia = ""
     @objc dynamic var tiempo = ""
-    var recorrido = [[CLLocationCoordinate2D]]()
+    var listaLatitudes = List<String>()
+    var listaLongitudes = List<String>()
     @objc dynamic var tienpoPorKm = ""
     @objc dynamic var dia = ""
     @objc dynamic var deporte = ""
-    
-    
-
-     
+    override class func primaryKey() -> String {
+        return "id"
+    }
     
 }
 
+
+
+
 class ActividadFinalizadaViewController: UIViewController {
     
-    
+   
     var cronometro2: Int = 0
     var KMTotales2: Double = 0.0
     var ruta2 = [[CLLocationCoordinate2D]]()
+    var listaLatitudes = List<String>()
+    var listaLongitudes = List<String>()
     var horas:Int = 0
     var minutos: Int = 0
     var segundos: Int = 0
@@ -43,7 +49,12 @@ class ActividadFinalizadaViewController: UIViewController {
     var deporte = ""
     let fecha = Date()
     let formater = DateFormatter()
-    
+    let realm = try! Realm() // [1]
+       var rutas: Results<Ruta> { // [2]
+           get{
+               return realm.objects(Ruta.self)
+           }
+       }
 
      
     let locationManager = CLLocationManager()
@@ -70,7 +81,7 @@ class ActividadFinalizadaViewController: UIViewController {
         calcularKM_min()
         KM_min.text = String("\(minutos2)min \(segundos2)s")
         Objetivo(numero: objetivo)
-        
+        rutaAString(ruta: ruta2)
         for ruta in ruta2 {
             polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
             mapa2.addOverlay(polilinea!)
@@ -117,7 +128,20 @@ class ActividadFinalizadaViewController: UIViewController {
         
     }
     
-    
+    func rutaAString(ruta: [[CLLocationCoordinate2D]]){
+        for recorrido in ruta{
+            for punto in recorrido{
+                let latitud = String(punto.latitude)
+                let longitud = String(punto.longitude)
+                listaLatitudes.append(latitud)
+                listaLongitudes.append(longitud)
+            }
+            listaLatitudes.append("siguiente")
+            listaLongitudes.append("siguiente")
+            
+        }
+        
+    }
     
     func calcularTiempo(){
          horas = cronometro2 / 3600
@@ -144,31 +168,36 @@ class ActividadFinalizadaViewController: UIViewController {
     
     
     func guardaDatos() -> Ruta {
+        
         formater.dateFormat = "dd.MM.yyyy"
         let result = formater.string(from: fecha)
         /*Datos para guardar*/
         let KMGuardar = distancia.text
         let TiempoGuardar = tiempo.text
         let KMinGuardar = KM_min.text
-        let recorridoGuardar = ruta2
+        let latitudesGuardar = listaLatitudes
+        let longitudesGuardar = listaLongitudes
         
         let nuevoRecorrido = Ruta()
         
+        nuevoRecorrido.id = (rutas[rutas.count-1].id)+1
         nuevoRecorrido.distancia = KMGuardar!
         nuevoRecorrido.tiempo = TiempoGuardar!
-        nuevoRecorrido.recorrido = recorridoGuardar
+        nuevoRecorrido.listaLatitudes = latitudesGuardar
+        nuevoRecorrido.listaLongitudes = longitudesGuardar
         nuevoRecorrido.tienpoPorKm = KMinGuardar!
         nuevoRecorrido.dia = String(result)
         nuevoRecorrido.deporte = deporte
-        
+        print(nuevoRecorrido)
         return nuevoRecorrido
     }
     
     @IBAction func GuardarButt(_ sender: Any) {
         let alertController = UIAlertController(title:"Ruta guardad con exito", message: "",preferredStyle: UIAlertController.Style.alert)
+        let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         
-        
-            let realm = try! Realm()
+            let realm = try! Realm(configuration: configuration)
+            
             let rutaAGuardar = self.guardaDatos()
             try! realm.write{
             realm.add(rutaAGuardar)

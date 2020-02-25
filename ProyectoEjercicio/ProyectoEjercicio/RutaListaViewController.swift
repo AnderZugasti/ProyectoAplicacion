@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class RutaListaViewController: UIViewController {
 
@@ -19,20 +20,70 @@ class RutaListaViewController: UIViewController {
     
     var tag: Int = 0
     var rutas: Ruta? = nil
+    var recorrido = [[CLLocationCoordinate2D]]()
+    var polilinea : MKPolyline?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        rellenaRuta(latitudes: Array(rutas!.listaLatitudes), longitudes: Array(rutas!.listaLongitudes))
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: ((rutas?.recorrido[0][0])!), span: span)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: (recorrido[0][0]), span: span)
         mapa.setRegion(region, animated:true)
-        mapa.delegate = self as! MKMapViewDelegate
+        mapa.delegate = self 
+        fechaLbl.text = rutas?.dia
+        distanciaLbl.text = rutas?.distancia
+        tiempoLbl.text = rutas?.tiempo
+        mediaLbl.text = rutas?.tienpoPorKm
+        for ruta in recorrido {
+            polilinea = MKPolyline(coordinates: ruta, count: ruta.count)
+            mapa.addOverlay(polilinea!)
+        }
         
        
         // Do any additional setup after loading the view.
     }
-    
+    func rellenaRuta(latitudes: Array<String> ,longitudes: Array<String>){
+        var camino = [CLLocationCoordinate2D]()
+        var cont = 0
+        
+        for punto in rutas!.listaLatitudes{
+            if punto != "siguiente"{
+                var location: CLLocationCoordinate2D
+                let latitud = punto
+                let longitud = rutas?.listaLongitudes[cont]
+                
+                location = CLLocationCoordinate2DMake(CLLocationDegrees(latitud)!,  CLLocationDegrees(longitud!)!)
+                camino.append(location)
+                cont+=1
+                
+            }else{
+                recorrido.append(camino)
+                camino.removeAll()
+            }
+            
+        }
+        
+    }
 
+    @IBAction func borrarButt(_ sender: Any) {
+        let realm = try! Realm()
+        let borrar = realm.objects(Ruta.self).filter("id = %@", rutas!.id)
+        try! realm.write {
+        
+            realm.delete(borrar)
+        
+        }
+      
+        let alertController = UIAlertController(title:"Ruta eliminada con exito", message: "",preferredStyle: UIAlertController.Style.alert)
+        let CancelarAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+             self.navigationController?.popViewController(animated: true)
+         }
+         alertController.addAction(CancelarAction)
+        
+         
+         self.present(alertController, animated: true)
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -46,11 +97,12 @@ class RutaListaViewController: UIViewController {
 }
 
 
+
 extension RutaListaViewController:MKMapViewDelegate{
   func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay)-> MKOverlayRenderer!{
       if (overlay is MKPolyline){
           let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-          renderer.strokeColor = UIColor.blue.withAlphaComponent(0.8)
+          renderer.strokeColor = UIColor.blue.withAlphaComponent(1)
           renderer.lineWidth=4
            return renderer
       }
@@ -63,4 +115,5 @@ extension RutaListaViewController:MKMapViewDelegate{
 
   }
 }
+
 

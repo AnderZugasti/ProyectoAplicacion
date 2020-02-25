@@ -23,9 +23,12 @@ class RutasTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
+        
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+       }
     
     
 
@@ -46,6 +49,7 @@ class RutasTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! RutaTableViewCell
         
         let num = indexPath.row
+        
         cell.fechalbl.text = rutas[num].dia
         cell.tiempolbl.text = rutas[num].tiempo
         cell.distancialbl.text = rutas[num].distancia
@@ -76,6 +80,8 @@ class RutasTableViewController: UITableViewController {
 
         return cell
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
         let destino = segue.destination as! RutaListaViewController
