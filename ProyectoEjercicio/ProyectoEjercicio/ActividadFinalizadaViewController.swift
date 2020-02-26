@@ -49,8 +49,8 @@ class ActividadFinalizadaViewController: UIViewController {
     var deporte = ""
     let fecha = Date()
     let formater = DateFormatter()
-    let realm = try! Realm() // [1]
-       var rutas: Results<Ruta> { // [2]
+    let realm = try! Realm()
+       var rutas: Results<Ruta> {
            get{
                return realm.objects(Ruta.self)
            }
@@ -198,7 +198,7 @@ class ActividadFinalizadaViewController: UIViewController {
         let alertController = UIAlertController(title:"Ruta guardad con exito", message: "",preferredStyle: UIAlertController.Style.alert)
         let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         
-            let realm = try! Realm(configuration: configuration)
+            let realm = try! Realm()
             
             let rutaAGuardar = self.guardaDatos()
             try! realm.write{

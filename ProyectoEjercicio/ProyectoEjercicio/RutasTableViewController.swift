@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class RutasTableViewController: UITableViewController {
+    
     var tag = 0
     
    let realm = try! Realm() // [1]
@@ -56,7 +57,7 @@ class RutasTableViewController: UITableViewController {
         cell.tiempolbl.text = rutas[num].tiempo
         cell.distancialbl.text = rutas[num].distancia
         + " Km"
-       
+        cell.buttInvisible.tag = indexPath.row
         switch rutas[num].deporte {
         case "Correr":
             cell.icono.image =  UIImage(named:"correr" )
@@ -71,7 +72,7 @@ class RutasTableViewController: UITableViewController {
             cell.layer.borderWidth = 2
         case "Andar":
             cell.icono.image = UIImage(named: "andando")
-
+            
         default:
             print ("no foto")
         }
@@ -87,19 +88,21 @@ class RutasTableViewController: UITableViewController {
     
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.tag = indexPath.row
+        print("1")
         self.performSegue(withIdentifier:"seleccion", sender: indexPath.row)
-        tag = indexPath.row
-        print (tag)
+        
+        
         
     
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
-           let destino = segue.destination as! RutaListaViewController
+       
+            let destino = segue.destination as! RutaListaViewController
            destino.tag = tag
            destino.rutas = rutas[tag]
-          print("no pasa")
-           
+          print("2")
+        
            }}
 
 

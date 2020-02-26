@@ -14,6 +14,8 @@ class RutaTableViewCell: UITableViewCell {
     @IBOutlet weak var distancialbl: UILabel!
     @IBOutlet weak var tiempolbl: UILabel!
     @IBOutlet weak var icono: UIImageView!
+    @IBOutlet weak var buttInvisible: UIButton!
+    
     
     
     override func awakeFromNib() {

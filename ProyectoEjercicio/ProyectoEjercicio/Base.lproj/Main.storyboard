@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zpu-dB-o3W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zpu-dB-o3W">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -566,6 +566,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttInvisible" destination="DrA-6W-MYw" id="iEt-fG-uGf"/>
                                     <outlet property="distancialbl" destination="DHc-bE-oGE" id="NJJ-dX-YGd"/>
                                     <outlet property="fechalbl" destination="R9q-Fi-YLy" id="CBr-sC-2RF"/>
                                     <outlet property="icono" destination="dnQ-sw-0Sb" id="od2-iQ-k2O"/>
@@ -752,7 +753,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00 : 00 : 00" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jg-Mk-rvs">
                                 <rect key="frame" x="64" y="71" width="286.5" height="81"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="57"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqM-9V-7GY">
@@ -793,7 +794,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0ru-3Z-kYB" firstAttribute="centerY" secondItem="rOp-kZ-dKb" secondAttribute="centerY" id="DgU-ey-ae6"/>
                             <constraint firstItem="Ik9-3l-aoO" firstAttribute="centerX" secondItem="rOp-kZ-dKb" secondAttribute="centerX" id="GsI-PZ-5vq"/>
@@ -834,14 +835,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aFK-Pq-QE0">
-                                <rect key="frame" x="20" y="71" width="374" height="342"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="424"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="WPu-Sl-7CO"/>
-                                    <constraint firstAttribute="height" constant="342" id="d6G-ca-gUf"/>
+                                    <constraint firstAttribute="width" constant="414" id="WPu-Sl-7CO"/>
+                                    <constraint firstAttribute="height" constant="424" id="d6G-ca-gUf"/>
                                 </constraints>
                             </mapView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-JI-U0y">
-                                <rect key="frame" x="20" y="462" width="374" height="240"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-S6-4cD">
+                                <rect key="frame" x="0.0" y="743" width="414" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="68" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PrR-be-qRR">
+                                        <rect key="frame" x="20" y="20" width="68" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="contentStretch" x="0.75" y="0.94999999999999996" width="1" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="PrR-be-qRR" secondAttribute="height" multiplier="34:15" id="QWa-mU-RNv"/>
+                                        </constraints>
+                                        <size key="titleShadowOffset" width="6" height="6"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Descartar">
+                                                    <attributes>
+                                                        <color key="NSColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="15"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <state key="selected">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="DescartarButt:" destination="3Nt-HY-HLW" eventType="touchUpInside" id="f4p-Em-Gou"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="56" placeholderIntrinsicHeight="28" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zjh-qE-sh5">
+                                        <rect key="frame" x="298" y="20" width="56" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="c1I-t1-hcq"/>
+                                            <constraint firstAttribute="width" secondItem="Zjh-qE-sh5" secondAttribute="height" multiplier="28:15" id="xMS-tT-Xfi"/>
+                                        </constraints>
+                                        <size key="titleShadowOffset" width="6" height="6"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Guardar">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="15"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="GuardarButt:" destination="3Nt-HY-HLW" eventType="touchUpInside" id="6f4-vJ-1BK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PrR-be-qRR" firstAttribute="centerY" secondItem="9Sx-S6-4cD" secondAttribute="centerY" id="GYl-eA-Krv"/>
+                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="centerX" relation="greaterThanOrEqual" secondItem="PrR-be-qRR" secondAttribute="centerX" id="K7u-L2-bMt"/>
+                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="top" secondItem="PrR-be-qRR" secondAttribute="top" id="KRw-f3-5f7"/>
+                                    <constraint firstAttribute="height" constant="70" id="Vim-w1-W6x"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-JI-U0y">
+                                <rect key="frame" x="0.0" y="488" width="414" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distancia recorrida" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDL-I8-QXv">
                                         <rect key="frame" x="32" y="20" width="144" height="21"/>
@@ -900,66 +960,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-S6-4cD">
-                                <rect key="frame" x="20" y="737" width="374" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjh-qE-sh5">
-                                        <rect key="frame" x="159" y="20" width="56" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="c1I-t1-hcq"/>
-                                            <constraint firstAttribute="width" constant="56" id="jMW-wf-KSY"/>
-                                        </constraints>
-                                        <state key="normal" title="Guardar"/>
-                                        <connections>
-                                            <action selector="GuardarButt:" destination="3Nt-HY-HLW" eventType="touchUpInside" id="6f4-vJ-1BK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PrR-be-qRR">
-                                        <rect key="frame" x="69" y="20" width="68" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <rect key="contentStretch" x="0.75" y="0.94999999999999996" width="1" height="1"/>
-                                        <state key="normal">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Descartar">
-                                                    <attributes>
-                                                        <color key="NSColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                        <state key="selected">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="DescartarButt:" destination="3Nt-HY-HLW" eventType="touchUpInside" id="f4p-Em-Gou"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="centerY" secondItem="9Sx-S6-4cD" secondAttribute="centerY" id="4om-9f-DBU"/>
-                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="top" secondItem="PrR-be-qRR" secondAttribute="top" id="KRw-f3-5f7"/>
-                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="bottom" secondItem="PrR-be-qRR" secondAttribute="bottom" id="eMS-uQ-6mA"/>
-                                    <constraint firstItem="Zjh-qE-sh5" firstAttribute="centerY" secondItem="PrR-be-qRR" secondAttribute="centerY" id="xHI-P3-aRl"/>
+                                    <constraint firstAttribute="height" constant="240" id="kZw-aB-Q9l"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9Sx-S6-4cD" firstAttribute="trailing" secondItem="OGh-JI-U0y" secondAttribute="trailing" id="6Yc-a1-sf8"/>
-                            <constraint firstItem="aFK-Pq-QE0" firstAttribute="top" secondItem="cou-7p-QQV" secondAttribute="top" constant="20" id="8dE-7Q-b28"/>
-                            <constraint firstItem="OGh-JI-U0y" firstAttribute="top" secondItem="aFK-Pq-QE0" secondAttribute="bottom" constant="15" id="8eQ-By-tqh"/>
+                            <constraint firstItem="aFK-Pq-QE0" firstAttribute="top" secondItem="cou-7p-QQV" secondAttribute="top" id="8dE-7Q-b28"/>
+                            <constraint firstItem="OGh-JI-U0y" firstAttribute="top" secondItem="aFK-Pq-QE0" secondAttribute="bottom" constant="8" id="8eQ-By-tqh"/>
                             <constraint firstItem="9Sx-S6-4cD" firstAttribute="centerX" secondItem="OGh-JI-U0y" secondAttribute="centerX" id="DgI-bz-1s7"/>
                             <constraint firstItem="OGh-JI-U0y" firstAttribute="leading" secondItem="aFK-Pq-QE0" secondAttribute="leading" id="ILu-fm-Rzw"/>
                             <constraint firstItem="OGh-JI-U0y" firstAttribute="trailing" secondItem="aFK-Pq-QE0" secondAttribute="trailing" id="SCG-ou-YA9"/>
                             <constraint firstItem="OGh-JI-U0y" firstAttribute="centerX" secondItem="aFK-Pq-QE0" secondAttribute="centerX" id="TwT-lP-BLS"/>
-                            <constraint firstItem="aFK-Pq-QE0" firstAttribute="top" secondItem="cou-7p-QQV" secondAttribute="top" constant="15" id="UHY-AA-QJ9"/>
                             <constraint firstItem="aFK-Pq-QE0" firstAttribute="centerX" secondItem="xtx-cz-jBC" secondAttribute="centerX" id="WCs-zm-FE8"/>
-                            <constraint firstItem="9Sx-S6-4cD" firstAttribute="top" relation="lessThanOrEqual" secondItem="OGh-JI-U0y" secondAttribute="bottom" constant="15" id="hNz-Dc-9D2"/>
                             <constraint firstItem="9Sx-S6-4cD" firstAttribute="leading" secondItem="OGh-JI-U0y" secondAttribute="leading" id="p8I-Y9-XZP"/>
+                            <constraint firstItem="9Sx-S6-4cD" firstAttribute="top" secondItem="OGh-JI-U0y" secondAttribute="bottom" constant="15" id="uMo-2k-dSl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cou-7p-QQV"/>
                     </view>
