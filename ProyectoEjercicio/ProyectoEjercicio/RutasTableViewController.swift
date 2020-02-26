@@ -14,7 +14,7 @@ class RutasTableViewController: UITableViewController {
     var tag = 0
     
    let realm = try! Realm() // [1]
-    var rutas: Results<Ruta> { // [2]
+   var rutas: Results<Ruta> { // [2]
         get{
             return realm.objects(Ruta.self)
         }
