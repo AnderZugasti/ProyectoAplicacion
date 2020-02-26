@@ -20,6 +20,7 @@ class RutasTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        self.tableView.reloadData()
         super.viewDidLoad()
         
         
@@ -27,6 +28,7 @@ class RutasTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.tableView.reloadData()
        }
     
@@ -83,20 +85,22 @@ class RutasTableViewController: UITableViewController {
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
-        let destino = segue.destination as! RutaListaViewController
-        destino.tag = tag
-        destino.rutas = rutas[tag]
-       print("no pasa")
-        
-        }}
+   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier:"seleccion", sender: indexPath.row)
         tag = indexPath.row
+        print (tag)
         
     
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
+           let destino = segue.destination as! RutaListaViewController
+           destino.tag = tag
+           destino.rutas = rutas[tag]
+          print("no pasa")
+           
+           }}
 
 
     /*

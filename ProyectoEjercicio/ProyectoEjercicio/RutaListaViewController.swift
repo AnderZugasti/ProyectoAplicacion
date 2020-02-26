@@ -17,7 +17,7 @@ class RutaListaViewController: UIViewController {
     @IBOutlet weak var tiempoLbl: UILabel!
     @IBOutlet weak var mediaLbl: UILabel!
     @IBOutlet weak var mapa: MKMapView!
-    
+    var vista = 0.5
     var tag: Int = 0
     var rutas: Ruta? = nil
     var recorrido = [[CLLocationCoordinate2D]]()
@@ -25,9 +25,20 @@ class RutaListaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        switch rutas?.deporte {
+        case "andar":
+            vista = 0.3
+        case "bici":
+            vista = 0.5
+        case "correr":
+            vista = 0.2
+            
+        default:
+            vista = 0.03
+        }
         rellenaRuta(latitudes: Array(rutas!.listaLatitudes), longitudes: Array(rutas!.listaLongitudes))
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: (recorrido[0][0]), span: span)
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: vista, longitudeDelta: vista)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: (recorrido[0][recorrido[0].count/2]), span: span)
         mapa.setRegion(region, animated:true)
         mapa.delegate = self 
         fechaLbl.text = rutas?.dia
@@ -57,6 +68,7 @@ class RutaListaViewController: UIViewController {
                 cont+=1
                 
             }else{
+                cont+=1
                 recorrido.append(camino)
                 camino.removeAll()
             }

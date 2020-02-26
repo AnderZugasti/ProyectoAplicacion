@@ -72,14 +72,14 @@ class ActividadFinalizadaViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: (ruta2[0][0]), span: span)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: ruta2[0][(ruta2[0].count)/2], span: span)
         mapa2.setRegion(region, animated:true)
         mapa2.delegate = self
         distancia.text = String(format: "%.02f", KMTotales2/1000)
         calcularTiempo()
         tiempo.text = String("\(horas)h \(minutos)min \(segundos)s")
         calcularKM_min()
-        KM_min.text = String("\(minutos2)min \(segundos2)s")
+        
         Objetivo(numero: objetivo)
         rutaAString(ruta: ruta2)
         for ruta in ruta2 {
@@ -152,13 +152,15 @@ class ActividadFinalizadaViewController: UIViewController {
     func calcularKM_min(){
         
         let tiempoS = Double(cronometro2)
+        print (cronometro2)
         print ("ok")
-        if ((KMTotales2 / 1000) > 1.0){
+        print (KMTotales2)
+        if (KMTotales2  > 1000.0){
             print ("ok")
-            let tiempoPara1Km = Int(tiempoS / KMTotales2)
+            let tiempoPara1Km = Int(tiempoS / (KMTotales2/1000))
             minutos2 = tiempoPara1Km/60
             segundos2 = (tiempoPara1Km)-(60*minutos2)
-            
+            KM_min.text = String("\(minutos2)min \(segundos2)s")
             }
         else{
             KM_min.text = "Ruta muy corta"

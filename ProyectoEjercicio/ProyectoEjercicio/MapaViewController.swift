@@ -21,7 +21,6 @@ class MapaViewController: UIViewController {
     @IBOutlet weak var InicioBoton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var cronometrolbl: UILabel!
-    @IBOutlet weak var minutoslbl: UILabel!
     @IBOutlet weak var horaslbl: UILabel!
     @IBOutlet weak var textoObjetivo: UILabel!
     
@@ -171,9 +170,9 @@ class MapaViewController: UIViewController {
            
         
         
-        cronometrolbl.text = String(format: "%.2d",segundos)
-         minutoslbl.text = String (format: "%.2d",minutos)
-         horaslbl.text = String (format: "%.2d",horas)
+        
+         
+         horaslbl.text = String (format: "%.2d : %.2d : %.2d",horas, minutos,segundos)
     }
     
     
