@@ -78,7 +78,7 @@ class ActividadFinalizadaViewController: UIViewController {
             vista = 0.09
             
         default:
-            vista = 0.09
+            vista = 0.04
         }
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)

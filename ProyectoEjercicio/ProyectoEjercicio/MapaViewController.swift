@@ -217,7 +217,7 @@ extension MapaViewController:CLLocationManagerDelegate{
                 KMTotales += distanciaRecorrida
                 var aSuperar = Double(objetivo)!*1000
                 if (aSuperar < KMTotales){
-                    textoObjetivo.text = "El objetivo de " + objetivo + "ha sido superado"
+                    textoObjetivo.text = "El objetivo de " + objetivo + " Km ha sido superado"
                 }
             }
                 ArrayPuntos.append(myLocation)

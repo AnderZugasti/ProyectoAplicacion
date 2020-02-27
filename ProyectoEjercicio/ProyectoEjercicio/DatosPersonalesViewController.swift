@@ -12,6 +12,7 @@ class DatosPersonalesViewController: UIViewController {
     @IBOutlet weak var alturatxt: UITextField!
     @IBOutlet weak var pesotxt: UITextField!
     @IBOutlet weak var estadoActual: UILabel!
+    @IBOutlet weak var guardarButt: UIButton!
     
     @IBOutlet weak var gorduralbl: UILabel!
     
@@ -22,6 +23,8 @@ class DatosPersonalesViewController: UIViewController {
     
     override func viewDidLoad() {
     super.viewDidLoad()
+        
+        
         if ((UserDefaults.standard.string(forKey: "Altura")) != nil){
             alturatxt.text = UserDefaults.standard.string(forKey: "Altura")
             alturatxt.isUserInteractionEnabled = false

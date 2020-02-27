@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var imagen: UIImageView!
     @IBOutlet weak var txtlbl: UILabel!
     @IBOutlet weak var recuadro: UIView!
+    @IBOutlet weak var viewObjetivos: UIView!
+    @IBOutlet weak var objCorr: UILabel!
+    @IBOutlet weak var objBici: UILabel!
+    @IBOutlet weak var ObjCami: UILabel!
     
     
     
@@ -25,8 +29,20 @@ class ViewController: UIViewController {
         
         
         super.viewDidLoad()
+        viewObjetivos.layer.borderWidth = 1
+        viewObjetivos.layer.borderColor = UIColor.black.cgColor
+        viewObjetivos.layer.cornerRadius = 20
+         if ((UserDefaults.standard.string(forKey: "objetivoCorrer")) != nil || (UserDefaults.standard.string(forKey: "objetivoBici")) != nil || (UserDefaults.standard.string(forKey: "objetivoAndando")) != nil){
+            objCorr.text = "Objetivo Corriendo: " + UserDefaults.standard.string(forKey: "objetivoCorrer")! + " Km"
+            objBici.text = "Objetivo en Bici: " + UserDefaults.standard.string(forKey: "objetivoBici")! + " Km"
+            ObjCami.text = "Objetivo Caminando: " + UserDefaults.standard.string(forKey: "objetivoAndando")! + " Km"
+         }else{
+            objCorr.text = "Por favor rellene "
+            objBici.text = "los datos en el menú"
+             ObjCami.text = "Datos personales"
         
     }
+}
     
     override func viewWillAppear(_ animated: Bool) {
         if(self.navigationController!.isToolbarHidden){
@@ -40,7 +56,11 @@ class ViewController: UIViewController {
             }
         }
             if rutas.isEmpty{
-                txtlbl.text = "Elige un ejercicio para relizar"
+                txtlbl.text = "Empieza a ejercitarte"
+                fechalbl.isHidden = true
+                Tiempolbl.isHidden = true
+                Distancialbl.isHidden = true
+                imagen.isHidden = true
             }else{
                 let ultimo = rutas.count-1
                 txtlbl.text = "Ultimo recorrido"
@@ -54,6 +74,7 @@ class ViewController: UIViewController {
                 recuadro.layer.borderWidth = 1
                 recuadro.layer.borderColor = UIColor.black.cgColor
                 recuadro.layer.cornerRadius = 20
+                
                 switch rutas[ultimo].deporte{
                 case "Correr":
                     imagen.image =  UIImage(named:"correr" )

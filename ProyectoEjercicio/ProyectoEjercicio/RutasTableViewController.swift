@@ -55,18 +55,21 @@ class RutasTableViewController: UITableViewController {
         
         cell.fechalbl.text = rutas[num].dia
         cell.tiempolbl.text = rutas[num].tiempo
-        cell.distancialbl.text = rutas[num].distancia
-        + " Km"
+        cell.distancialbl.text = rutas[num].distancia + " Km"
         cell.buttInvisible.tag = indexPath.row
         cell.icono.layer.borderWidth = 1
         cell.icono.layer.borderColor = UIColor.black.cgColor
         cell.icono.layer.cornerRadius = 20
         cell.icono.clipsToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.layer.shadowColor = UIColor.black.cgColor.copy(alpha: 0.2)
         if num % 2 == 0{
             cell.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
             cell.layer.borderWidth = 4
+            
         }else{
-            cell.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.7).cgColor
+            cell.layer.borderColor = UIColor.systemYellow.withAlphaComponent(0.5).cgColor
+            
             cell.layer.borderWidth = 4
         }
         switch rutas[num].deporte {
@@ -97,7 +100,7 @@ class RutasTableViewController: UITableViewController {
    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tag = indexPath.row
-        print("1")
+        
         self.performSegue(withIdentifier:"seleccion", sender: indexPath.row)
         
         
@@ -106,10 +109,10 @@ class RutasTableViewController: UITableViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { if( segue.identifier == "seleccion"){
        
-            let destino = segue.destination as! RutaListaViewController
+           let destino = segue.destination as! RutaListaViewController
            destino.tag = tag
            destino.rutas = rutas[tag]
-          print("2")
+          
         
            }}
 
