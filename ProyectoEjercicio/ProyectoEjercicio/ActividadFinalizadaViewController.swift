@@ -64,14 +64,25 @@ class ActividadFinalizadaViewController: UIViewController {
     @IBOutlet weak var distancia: UILabel!
     @IBOutlet weak var tiempo: UILabel!
     @IBOutlet weak var objetivolbl: UILabel!
-    
+    var vista = 0.0
     
     
     
     override func viewDidLoad() {
+        switch objetivo {
+        case 1:
+            vista = 0.07
+        case 2:
+            vista = 0.2
+        case 3:
+            vista = 0.09
+            
+        default:
+            vista = 0.09
+        }
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: vista, longitudeDelta: vista)
         let region:MKCoordinateRegion = MKCoordinateRegion(center: ruta2[0][(ruta2[0].count)/2], span: span)
         mapa2.setRegion(region, animated:true)
         mapa2.delegate = self
@@ -110,7 +121,7 @@ class ActividadFinalizadaViewController: UIViewController {
         if (KMTotales2/1000 >  reto){
             switch numero {
             case 1:
-                UserDefaults.standard.set(String((Int(ejercicio) ?? 0)+5), forKey: "objetivoCorrer")
+                UserDefaults.standard.set(String((Int(ejercicio) ?? 0)+2), forKey: "objetivoCorrer")
            
             case 2:
                 UserDefaults.standard.set(String((Int(ejercicio) ?? 0)+10), forKey: "objetivoBici")

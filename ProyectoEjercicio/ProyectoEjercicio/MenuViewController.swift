@@ -10,9 +10,14 @@ import UIKit
 
 class MenuViewController: UITableViewController {
 
+    @IBOutlet weak var correrImg: UIImageView!
+    @IBOutlet weak var BiciImg: UIImageView!
+    @IBOutlet weak var andarImg: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        correrImg.image = UIImage(named:"correr" )
+        BiciImg.image = UIImage(named: "bici")
+        andarImg.image = UIImage(named: "andando")
         // Do any additional setup after loading the view.
     }
     

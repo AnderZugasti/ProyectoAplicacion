@@ -29,9 +29,9 @@ class RutaListaViewController: UIViewController {
         case "andar":
             vista = 0.3
         case "bici":
-            vista = 0.5
+            vista = 0.9
         case "correr":
-            vista = 0.2
+            vista = 0.3
             
         default:
             vista = 0.03
@@ -42,7 +42,7 @@ class RutaListaViewController: UIViewController {
         mapa.setRegion(region, animated:true)
         mapa.delegate = self 
         fechaLbl.text = rutas?.dia
-        distanciaLbl.text = rutas?.distancia
+        distanciaLbl.text = rutas!.distancia + "Km"
         tiempoLbl.text = rutas?.tiempo
         mediaLbl.text = rutas?.tienpoPorKm
         for ruta in recorrido {

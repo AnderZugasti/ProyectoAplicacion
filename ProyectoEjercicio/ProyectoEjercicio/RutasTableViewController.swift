@@ -58,18 +58,26 @@ class RutasTableViewController: UITableViewController {
         cell.distancialbl.text = rutas[num].distancia
         + " Km"
         cell.buttInvisible.tag = indexPath.row
+        cell.icono.layer.borderWidth = 1
+        cell.icono.layer.borderColor = UIColor.black.cgColor
+        cell.icono.layer.cornerRadius = 20
+        cell.icono.clipsToBounds = true
+        if num % 2 == 0{
+            cell.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
+            cell.layer.borderWidth = 4
+        }else{
+            cell.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.7).cgColor
+            cell.layer.borderWidth = 4
+        }
         switch rutas[num].deporte {
         case "Correr":
             cell.icono.image =  UIImage(named:"correr" )
-            cell.backgroundColor = UIColor.blue.withAlphaComponent(0.2)
-            cell.layer.borderColor = UIColor.blue.withAlphaComponent(0.7).cgColor
             
-            cell.layer.borderWidth = 2
+            
         case "Bici":
             cell.icono.image =  UIImage(named:"bici" )
-            cell.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-            cell.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
-            cell.layer.borderWidth = 2
+            
+            
         case "Andar":
             cell.icono.image = UIImage(named: "andando")
             

@@ -85,7 +85,7 @@ class DatosPersonalesViewController: UIViewController {
                 
             case 18,5 ... 24,9:
                 gorduralbl.text = "Normopeso"
-                gorduralbl.textColor = UIColor.green
+                gorduralbl.textColor = UIColor.green.withAlphaComponent(0.9)
                 
             case 25,0 ... 29,8:
                 gorduralbl.text = "Sobrepeso"
