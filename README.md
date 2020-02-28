@@ -5,3 +5,7 @@ proyecto aplicación de ejercicio
   
 ## Paso entre ventanas
 ![](./uso.jpg)
+
+## Manual
+
+Para ver el manual pincha [aquí](./manual.pdf)
