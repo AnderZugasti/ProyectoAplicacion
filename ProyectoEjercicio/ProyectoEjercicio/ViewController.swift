@@ -32,21 +32,22 @@ class ViewController: UIViewController {
         viewObjetivos.layer.borderWidth = 1
         viewObjetivos.layer.borderColor = UIColor.black.cgColor
         viewObjetivos.layer.cornerRadius = 20
-         if ((UserDefaults.standard.string(forKey: "objetivoCorrer")) != nil || (UserDefaults.standard.string(forKey: "objetivoBici")) != nil || (UserDefaults.standard.string(forKey: "objetivoAndando")) != nil){
-            objCorr.text = "Objetivo Corriendo: " + UserDefaults.standard.string(forKey: "objetivoCorrer")! + " Km"
-            objBici.text = "Objetivo en Bici: " + UserDefaults.standard.string(forKey: "objetivoBici")! + " Km"
-            ObjCami.text = "Objetivo Caminando: " + UserDefaults.standard.string(forKey: "objetivoAndando")! + " Km"
-         }else{
-            objCorr.text = "Por favor rellene "
-            objBici.text = "los datos en el menú"
-             ObjCami.text = "Datos personales"
-        
-    }
+         
 }
     
     override func viewWillAppear(_ animated: Bool) {
         if(self.navigationController!.isToolbarHidden){
             self.navigationController?.setNavigationBarHidden(false, animated: false)
+            
+        }
+        if ((UserDefaults.standard.string(forKey: "objetivoCorrer")) != nil || (UserDefaults.standard.string(forKey: "objetivoBici")) != nil || (UserDefaults.standard.string(forKey: "objetivoAndando")) != nil){
+                objCorr.text = "Objetivo Corriendo: " + UserDefaults.standard.string(forKey: "objetivoCorrer")! + " Km"
+                objBici.text = "Objetivo en Bici: " + UserDefaults.standard.string(forKey: "objetivoBici")! + " Km"
+                ObjCami.text = "Objetivo Caminando: " + UserDefaults.standard.string(forKey: "objetivoAndando")! + " Km"
+             }else{
+                objCorr.text = "Por favor rellene "
+                objBici.text = "los datos en el menú"
+                 ObjCami.text = "Datos personales"
             
         }
         let realm = try! Realm()
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
             }
         }
             if rutas.isEmpty{
-                txtlbl.text = "Empieza a ejercitarte"
+                txtlbl.text = "Realiza un ejercicio"
                 fechalbl.isHidden = true
                 Tiempolbl.isHidden = true
                 Distancialbl.isHidden = true
@@ -64,6 +65,10 @@ class ViewController: UIViewController {
             }else{
                 let ultimo = rutas.count-1
                 txtlbl.text = "Ultimo recorrido"
+                fechalbl.isHidden = false
+                Tiempolbl.isHidden = false
+                Distancialbl.isHidden = false
+                imagen.isHidden = false
                 fechalbl.text = rutas[ultimo].dia
                 Distancialbl.text = String(rutas[ultimo].distancia) + " Km"
                 Tiempolbl.text = rutas[ultimo].tiempo

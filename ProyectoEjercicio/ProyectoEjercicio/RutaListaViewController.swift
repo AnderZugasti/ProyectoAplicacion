@@ -26,15 +26,15 @@ class RutaListaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         switch rutas?.deporte {
-        case "andar":
-            vista = 0.3
-        case "bici":
-            vista = 0.9
-        case "correr":
-            vista = 0.3
+        case "Andar":
+            vista = 0.04
+        case "Bici":
+            vista = 0.1
+        case "Correr":
+            vista = 0.03
             
         default:
-            vista = 0.03
+            vista = 1
         }
         rellenaRuta(latitudes: Array(rutas!.listaLatitudes), longitudes: Array(rutas!.listaLongitudes))
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: vista, longitudeDelta: vista)

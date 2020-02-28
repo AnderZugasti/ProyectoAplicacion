@@ -16,8 +16,8 @@
 		B34227B923D30072002D71DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227B823D30072002D71DA /* SceneDelegate.swift */; };
 		B34227BB23D30072002D71DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34227BA23D30072002D71DA /* ViewController.swift */; };
 		B34227BE23D30072002D71DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227BC23D30072002D71DA /* Main.storyboard */; };
-		B34227C023D30074002D71DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34227BF23D30074002D71DA /* Assets.xcassets */; };
 		B34227C323D30074002D71DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34227C123D30074002D71DA /* LaunchScreen.storyboard */; };
+		B3578E862409313500BDD67A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3578E852409313500BDD67A /* Images.xcassets */; };
 		B35D2C3B23F802B6006DB830 /* RutasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D2C3A23F802B6006DB830 /* RutasTableViewController.swift */; };
 		B35D2C3D23F80AAA006DB830 /* RutaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D2C3C23F80AAA006DB830 /* RutaTableViewCell.swift */; };
 		B38CE59823DCC4E3001C3670 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38CE59723DCC4E3001C3670 /* MapKit.framework */; };
@@ -37,9 +37,9 @@
 		B34227B823D30072002D71DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B34227BA23D30072002D71DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B34227BD23D30072002D71DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B34227BF23D30074002D71DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34227C223D30074002D71DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34227C423D30074002D71DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3578E852409313500BDD67A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B35D2C3A23F802B6006DB830 /* RutasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutasTableViewController.swift; sourceTree = "<group>"; };
 		B35D2C3C23F80AAA006DB830 /* RutaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RutaTableViewCell.swift; sourceTree = "<group>"; };
 		B38CE59723DCC4E3001C3670 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -102,10 +102,10 @@
 				B34227B823D30072002D71DA /* SceneDelegate.swift */,
 				B34227BA23D30072002D71DA /* ViewController.swift */,
 				B34227BC23D30072002D71DA /* Main.storyboard */,
-				B34227BF23D30074002D71DA /* Assets.xcassets */,
 				B34227C123D30074002D71DA /* LaunchScreen.storyboard */,
 				B34227C423D30074002D71DA /* Info.plist */,
 				42D8334523E4A146006C42CD /* MapaViewController.swift */,
+				B3578E852409313500BDD67A /* Images.xcassets */,
 				B3D9CB9C23E81BAA00ADB849 /* DatosPersonalesViewController.swift */,
 				42A13B5B23EC6EC80074937B /* ActividadFinalizadaViewController.swift */,
 				427D795623F713EF0012BB60 /* MenuViewController.swift */,
@@ -176,8 +176,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3578E862409313500BDD67A /* Images.xcassets in Resources */,
 				B34227C323D30074002D71DA /* LaunchScreen.storyboard in Resources */,
-				B34227C023D30074002D71DA /* Assets.xcassets in Resources */,
 				B34227BE23D30072002D71DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A7E35C6D09C87EA0D28614D /* Pods-ProyectoEjercicio.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -404,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22ECC3DF16CB68468E8641DA /* Pods-ProyectoEjercicio.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

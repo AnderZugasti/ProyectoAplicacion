@@ -71,11 +71,11 @@ class ActividadFinalizadaViewController: UIViewController {
     override func viewDidLoad() {
         switch objetivo {
         case 1:
-            vista = 0.07
+            vista = 0.05
         case 2:
-            vista = 0.2
+            vista = 0.06
         case 3:
-            vista = 0.09
+            vista = 0.05
             
         default:
             vista = 0.04
@@ -192,8 +192,11 @@ class ActividadFinalizadaViewController: UIViewController {
         let longitudesGuardar = listaLongitudes
         
         let nuevoRecorrido = Ruta()
-        
+        if rutas.isEmpty{
+            nuevoRecorrido.id = 0
+        }else{
         nuevoRecorrido.id = (rutas[rutas.count-1].id)+1
+        }
         nuevoRecorrido.distancia = KMGuardar!
         nuevoRecorrido.tiempo = TiempoGuardar!
         nuevoRecorrido.listaLatitudes = latitudesGuardar
