@@ -8,4 +8,4 @@ proyecto aplicación de ejercicio
 
 ## Manual
 
-Para ver el manual pincha [aquí](./manual.pdf)
+Para ver el manual pincha [aquí](./Manual Aplicación.pdf)
