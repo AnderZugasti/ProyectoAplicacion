@@ -1,5 +1,5 @@
 # ProyectoAplicacion
-proyecto aplicación de ejercicio
+![]./icono.jpg)
 ## Descripción 
   La aplicación nos permite guardar la rutas que realicemos, y guarda objetivos a superar con el fin de mejorar intentando superarse a uno mismo
   
